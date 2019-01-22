@@ -1,3 +1,3 @@
 rootProject.name = 'cli-tools'
 include 'gradle-please-console'
-
+include 'bittrex-java-simple'

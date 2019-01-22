@@ -1,0 +1,74 @@
+group 'xyz.moonrabbit'
+version '1.0'
+
+apply plugin: "java"
+apply plugin: "groovy"
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "io.github.http-builder-ng:http-builder-ng-okhttp:1.0.3"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.json:json:20180130"
+    compile "org.apache.commons:commons-lang3:3.1"
+
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "xyz.moonrabbit.bittrex.launcher.Launcher"
+    }
+
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+import groovyx.net.http.OkHttpBuilder
+import groovyx.net.http.OkHttpEncoders
+
+import static groovyx.net.http.MultipartContent.multipart
+
+task bitbucketDeploy() {
+    doLast {
+        File propFile = rootProject.file("bitbucket.properties")
+        if (!propFile.exists()) {
+            throw new GradleException(propFile.name + " file not found")
+        }
+
+        Properties prop = new Properties()
+        prop.load(new FileInputStream(propFile))
+        String user = prop["bitbucket.user"]
+        String pass = prop["bitbucket.pass"]
+        String owner = prop["bitbucket.repo.owner"]
+        String slug = prop["bitbucket.repo.slug"]
+        if (user == null || pass == null || owner == null || slug == null) {
+            throw new GradleException("Missing one or more properties")
+        }
+
+        def uri = "https://@api.bitbucket.org"
+        def uriPath = "/2.0/repositories/" + owner + "/" + slug + "/downloads"
+
+        OkHttpBuilder.configure {
+            request.uri = uri
+            request.auth.basic user, pass
+        }.post {
+            request.uri.path = uriPath
+            request.contentType = "multipart/form-data"
+            request.body = multipart {
+                part "files", jar.archivePath.name, "text/plain", new File(jar.archivePath.path)
+            }
+            request.encoder "multipart/form-data", OkHttpEncoders.&multipart
+        }
+
+        println("Artifact " + jar.archivePath.name + " uploaded successfully")
+    }
+}
