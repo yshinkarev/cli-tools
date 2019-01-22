@@ -9,8 +9,6 @@ jar {
     manifest {
         attributes 'Main-Class': 'xyz.moonrabit.png2drawable.Main'
     }
-
-    version = "1.0"
 }
 
 repositories {
@@ -18,5 +16,4 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
