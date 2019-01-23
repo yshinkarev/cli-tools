@@ -1,19 +1,7 @@
-group 'xyz.moonrabit'
-version '1.0'
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.8
+version "1.0"
 
 jar {
     manifest {
-        attributes 'Main-Class': 'xyz.moonrabit.png2drawable.Main'
+        attributes "Main-Class": "xyz.moonrabit.png2drawable.Main"
     }
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
 }

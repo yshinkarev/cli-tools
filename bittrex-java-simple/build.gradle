@@ -1,7 +1,5 @@
-group 'xyz.moonrabbit'
-version '1.0'
+version "1.0"
 
-apply plugin: "java"
 apply plugin: "groovy"
 
 buildscript {
@@ -12,10 +10,6 @@ buildscript {
     dependencies {
         classpath "io.github.http-builder-ng:http-builder-ng-okhttp:1.0.3"
     }
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {

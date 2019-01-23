@@ -1,16 +1,4 @@
-group 'xyz.moonrabit'
-version '1.0'
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-}
+version "1.0"
 
 jar {
     manifest {
@@ -19,4 +7,3 @@ jar {
 
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
 }
-
