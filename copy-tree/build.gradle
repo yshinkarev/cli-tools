@@ -1,5 +1,12 @@
 version "1.0"
 
+dependencies {
+    compile "commons-cli:commons-cli:1.4"
+    compile "org.apache.commons:commons-lang3:3.8.1"
+    compile "commons-io:commons-io:2.6"
+    compile "commons-codec:commons-codec:1.11"
+}
+
 jar {
     manifest {
         attributes "Main-Class": "xyz.moonrabbit.copytree.Launcher"
