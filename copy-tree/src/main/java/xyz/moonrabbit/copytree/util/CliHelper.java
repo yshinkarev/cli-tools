@@ -1,6 +1,8 @@
 package xyz.moonrabbit.copytree.util;
 
 import org.apache.commons.cli.*;
+import xyz.moonrabbit.Util;
+import xyz.moonrabbit.copytree.Launcher;
 
 public class CliHelper {
 
@@ -38,7 +40,7 @@ public class CliHelper {
 
     public void showError(String message) {
         Util.err(message);
-        formatter.printHelp(Util.getJarFileName(), options, true);
+        formatter.printHelp(Util.getJarFileName(Launcher.class), options, true);
         System.exit(1);
     }
 

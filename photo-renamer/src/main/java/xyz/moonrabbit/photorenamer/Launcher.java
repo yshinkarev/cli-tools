@@ -75,7 +75,7 @@ public class Launcher {
                 date = new Date(file.lastModified());
             }
 
-            if (date.getDate() == startDate.getDate())
+            if (date.getTime() == startDate.getTime())
                 count++;
             else {
                 count = 0;

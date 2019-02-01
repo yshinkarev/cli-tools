@@ -1,8 +1,7 @@
-package xyz.moonrabbit.copytree.util;
+package xyz.moonrabbit;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
-import xyz.moonrabbit.copytree.Launcher;
 
 import java.io.File;
 import java.io.PrintStream;
@@ -10,9 +9,9 @@ import java.net.URISyntaxException;
 
 public class Util {
 
-    public static String getJarFileName() {
+    public static String getJarFileName(Class<?> launcherClass) {
         try {
-            String fileName = new File(Launcher.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getName();
+            String fileName = new File(launcherClass.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getName();
             return StringUtils.substringBefore(FilenameUtils.removeExtension(fileName), "-");
         } catch (URISyntaxException e) {
             return "copy-tree";

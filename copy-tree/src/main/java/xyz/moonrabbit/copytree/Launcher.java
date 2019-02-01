@@ -1,7 +1,7 @@
 package xyz.moonrabbit.copytree;
 
+import xyz.moonrabbit.Util;
 import xyz.moonrabbit.copytree.util.CliHelper;
-import xyz.moonrabbit.copytree.util.Util;
 
 public class Launcher {
 
