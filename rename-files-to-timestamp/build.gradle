@@ -1,0 +1,15 @@
+version "1.0"
+
+dependencies {
+    compile "commons-cli:commons-cli:1.4"
+    compile "commons-codec:commons-codec:1.11"
+    compile project(":common")
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "xyz.moonrabbit.copytree.Launcher"
+    }
+
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}

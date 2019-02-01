@@ -1,7 +1,8 @@
-rootProject.name = 'cli-tools'
-include 'gradle-please-console'
-include 'bittrex-java-simple'
-include 'photo-renamer'
-include 'png2drawable'
-include 'copy-tree'
-include 'common'
+rootProject.name = "cli-tools"
+include "gradle-please-console"
+include "bittrex-java-simple"
+include "photo-renamer"
+include "png2drawable"
+include "copy-tree"
+include "common"
+include "rename-files-to-timestamp"
