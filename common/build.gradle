@@ -1,0 +1,6 @@
+version "1.0"
+
+dependencies {
+    compile "org.apache.commons:commons-lang3:3.8.1"
+    compile "commons-io:commons-io:2.6"
+}
